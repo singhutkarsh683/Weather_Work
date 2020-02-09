@@ -1,0 +1,69 @@
+import requests,json
+import argparse
+
+parser = argparse.ArgumentParser()
+
+http_address = "http://api.openweathermap.org/data/2.5/weather?"
+api_address = "&appid=26cfbcc357c62e2085cc390bd6006de2"
+
+def weather(url):
+
+    result=requests.get(url)
+    x=result.json()
+
+    current_temp = x['main']['temp']
+    minimum_temp = x['main']['temp_min']
+    maximum_temp = x['main']['temp_max']
+    humidity = x['main']['humidity']
+    timezone = x['timezone']
+    z = x["weather"]
+    weather_description = z[0]["description"]
+    name = x['name']
+
+
+    print("Current Temprature :", current_temp, "F")
+    print("Minimum Temprature :",minimum_temp, "F")
+    print("Maximum Temprature :",maximum_temp, "F")
+    print("Humidity", humidity,"%")
+    print("Time Zone : ", timezone)
+    print("Description = " + str(weather_description))
+    print("Name of City = ", name)      
+
+def cityname():
+
+    city = input("City Name : ")
+
+    url = http_address +"q="+ city + api_address
+    
+    weather(url)
+    
+
+def lonlat():
+
+    lat = input("Latitude (-90 to 90) : ")
+    lon = input("Longitude (-180 to 180) :")
+    url = http_address + "lat=" + str(lat) + "&lon=" + str(lon) + api_address
+    
+    weather(url)
+
+
+    
+    
+
+
+    
+parser.add_argument("-c", "--city_name", help="Find Weather of City Name",
+                   action = "store_true")
+
+parser.add_argument("-l", "--lon_lat", help = "Find weather of Longitude and Latitude",
+                   action = "store_true")
+
+args= parser.parse_args()
+
+if args.city_name:
+    cityname()
+    
+if args.lon_lat:
+    lonlat()
+
+
