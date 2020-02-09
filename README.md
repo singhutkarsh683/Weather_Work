@@ -13,3 +13,5 @@ By seeing example code of API key on google, I came to know what code to write t
 For city input I genereated url in that way so that we get weather info of the specified city, same for the input given of Longitude and Latitude,via help of google I used its python code to find longitude and latitude which I transferred it to the url of lon and lat one to get the weather data
 
 I used argapase as while I was scrolling in Google in search on CLI i found this code and it helped me not to used if else-code and by simply writing -c for city name, -l for longitude and latitude, -i for current location after python3 Weather.py made more easier and simpified. 
+
+THIS CODE IS NOT WORKING IN JUPYTER BUT IS WORKING IN UBUNTU
